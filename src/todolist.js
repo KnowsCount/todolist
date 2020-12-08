@@ -50,7 +50,7 @@ class todolist extends Component {
 						return (
 							<div>
 								{/* 这里必须要 <div> 标签，因为 react 会认为你要他 return 两个 */}
-								<Todoitem />
+								<Todoitem content={item} />
 								{/*<li
 									key={index}
 									onClick={this.handleDeletion.bind(this, index)}
