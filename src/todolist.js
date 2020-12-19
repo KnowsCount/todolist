@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import './todolist.css';
+import Todoitem from './todoitem';
 
 /*
  * 创建一个组件：
@@ -27,14 +28,18 @@ class todolist extends Component {
 			// jsx 语法下 render() 返回的内容外层必须整体被包含在一个大的元素中。
 			// 外层会套一个 div。但是可以用 Fragment 替代最外层的 div 标签。
 			<Fragment>
+				{/* 这样写注释 */}
 				<div>
+					<label htmlFor="insertArea">输入内容</label>
 					<input
+						// className='foo'
+						id="insertArea"
 						value={this.state.inputValue}
 						onChange={this.handleInputChange.bind(this)}
 					/>
 					<button
 						type="submit"
-						onClick={this.handleBtnClick.bind(this)}
+						onClick={this.handleBtnClick.bind(this)} // 一定要 bind(this)
 					>
 						submit
 					</button>
@@ -43,12 +48,15 @@ class todolist extends Component {
 					{this.state.list.map((item, index) => {
 						// 用 map 做数组循环
 						return (
-							<li
-								key={index}
-								onClick={this.handleDeletion.bind(this, index)}
-							>
-								{item}
-							</li>
+							<div>
+								{/* 这里必须要 <div> 标签，因为 react 会认为你要他 return 两个 */}
+								<Todoitem />
+								{/*<li
+									key={index}
+									onClick={this.handleDeletion.bind(this, index)}
+									dangerouslySetInnerHTML={{ __html: item }} // 使 <h1> 可以被读成元素而非字符串。只不过会有 xss 的风险。
+								></li>*/}
+							</div>
 						);
 						// 避免使用 index 做 key 值
 					})}
