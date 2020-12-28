@@ -6,7 +6,12 @@ class todoitem extends Component {
 	}
 
 	handleClick() {
-		alert('1');
+		this.handleDeletion.bind(this, index);
+	}
+
+	handleDeletion(index) {
+		const list = [...this.state.list];
+		list.splice(index, 1);
 	}
 }
 

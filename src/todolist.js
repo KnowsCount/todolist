@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import './todolist.css';
-import Todoitem from './todoitem';
+// import './todoitem'
 
 /*
  * 创建一个组件：
@@ -50,12 +50,15 @@ class todolist extends Component {
 						return (
 							<div>
 								{/* 这里必须要 <div> 标签，因为 react 会认为你要他 return 两个 */}
-								<Todoitem content={item} />
-								{/*<li
+								{/*<Todoitem content={item} />*/}
+								<li
 									key={index}
-									onClick={this.handleDeletion.bind(this, index)}
+									onClick={this.handleDeletion.bind(
+										this,
+										index
+									)}
 									dangerouslySetInnerHTML={{ __html: item }} // 使 <h1> 可以被读成元素而非字符串。只不过会有 xss 的风险。
-								></li>*/}
+								></li>
 							</div>
 						);
 						// 避免使用 index 做 key 值
