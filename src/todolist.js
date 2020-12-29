@@ -21,6 +21,9 @@ class todolist extends Component {
 		this.state = {
 			inputValue: '', // input 框的内容储存于此。
 			list: [], // 矩阵储存表单
+			current: 0,
+			bgColor: '',
+			strikeThrough: [],
 		};
 	}
 	render() {
@@ -48,9 +51,10 @@ class todolist extends Component {
 					{this.state.list.map((item, index) => {
 						// 用 map 做数组循环
 						return (
+							/*
 							<div>
-								{/* 这里必须要 <div> 标签，因为 react 会认为你要他 return 两个 */}
-								{/*<Todoitem content={item} />*/}
+								{/* 这里必须要 <div> 标签，因为 react 会认为你要他 return 两个 
+								{/*<Todoitem content={item} />
 								<li
 									key={index}
 									onClick={this.handleDeletion.bind(
@@ -59,7 +63,14 @@ class todolist extends Component {
 									)}
 									dangerouslySetInnerHTML={{ __html: item }} // 使 <h1> 可以被读成元素而非字符串。只不过会有 xss 的风险。
 								></li>
-							</div>
+							</div>*/
+							<li
+								key={index}
+								onClick={this.crossLine}
+								style={{ color: this.state.Colour }}
+							>
+								{item}
+							</li>
 						);
 						// 避免使用 index 做 key 值
 					})}
@@ -91,14 +102,28 @@ class todolist extends Component {
 			inputValue: '', // 清空 input
 		});
 	}
-	handleDeletion(index) {
+	changeColour = (i) => {
+		console.log(i);
+		this.setState({
+			Colour: 'grey',
+		});
+	};
+	crossLine = (event) => {
+		const element = event.target;
+		element.classList.toggle('crossed-line');
+	};
+	/*onClick() {
+		this.changeColour().bind(this);
+		this.crossLine().bind(this);
+	}*/
+	/*handleDeletion(index) {
 		const list = [...this.state.list];
 		list.splice(index, 1);
 
 		this.setState({
 			list: list,
 		});
-	}
+	}*/
 }
 
 export default todolist;
