@@ -66,7 +66,7 @@ class todolist extends Component {
 							</div>*/
 							<li
 								key={index}
-								onClick={this.crossLine}
+								onClick={(event) => this.onButtonClick(event)}
 								style={{ color: this.state.Colour }}
 							>
 								{item}
@@ -102,8 +102,7 @@ class todolist extends Component {
 			inputValue: '', // 清空 input
 		});
 	}
-	changeColour = (i) => {
-		console.log(i);
+	changeColour = () => {
 		this.setState({
 			Colour: 'grey',
 		});
@@ -112,10 +111,10 @@ class todolist extends Component {
 		const element = event.target;
 		element.classList.toggle('crossed-line');
 	};
-	/*onClick() {
-		this.changeColour().bind(this);
-		this.crossLine().bind(this);
-	}*/
+	onButtonClick = (event) => {
+		this.changeColour();
+		this.crossLine(event);
+	};
 	/*handleDeletion(index) {
 		const list = [...this.state.list];
 		list.splice(index, 1);
